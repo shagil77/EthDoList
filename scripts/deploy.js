@@ -4,8 +4,11 @@ async function main() {
     const todoList = await TodoList.deploy();
   
     await todoList.deployed();
+
+    const task = await todoList.tasks(1);
   
     console.log("TodoList deployed to:", todoList.address);
+    console.log(task.content);
   }
   
   main()
