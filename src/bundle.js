@@ -23427,12 +23427,31 @@ App = {
       // node = http://127.0.0.1:8545/
       // function to call
       // Create a JavaScript version of the smart contract
-      const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+      const contractAddress = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
       const abi = [
         {
           "inputs": [],
           "stateMutability": "nonpayable",
           "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "completed",
+              "type": "bool"
+            }
+          ],
+          "name": "TaskCompleted",
+          "type": "event"
         },
         {
           "anonymous": false,
@@ -23512,6 +23531,19 @@ App = {
             }
           ],
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "toggleCompleted",
+          "outputs": [],
+          "stateMutability": "nonpayable",
           "type": "function"
         }
       ];

@@ -35,4 +35,11 @@ describe("TodoList", function (accounts) {
         // const event = result.logs[0].args
 
       })
+
+      it('toggles task completion', async ()=> {
+        const result = await this.todoList.toggleCompleted(1)
+        const task = await this.todoList.tasks(1)
+        assert.equal(task.completed, true)
+        console.log(result)
+      })
   });

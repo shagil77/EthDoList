@@ -20,6 +20,11 @@ contract TodoList {
         bool completed
     );
 
+    event TaskCompleted (
+        uint id,
+        bool completed
+    );
+
     // run for the first time when the smart contract is deployed
     constructor() { 
         createTask("Focus on your goal!");
@@ -31,5 +36,10 @@ contract TodoList {
         emit TaskCreated(taskCount, _content, false);
     }
 
-    
+    function toggleCompleted(uint _id) public {
+        Task memory _task=tasks[_id];
+        _task.completed = !_task.completed;
+        tasks[_id]=_task;
+        emit TaskCompleted(_id, _task.completed);
+    }    
 }
