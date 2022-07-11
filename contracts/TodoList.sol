@@ -14,6 +14,12 @@ contract TodoList {
 
     mapping(uint => Task) public tasks;
 
+    event TaskCreated(
+        uint id,
+        string content,
+        bool completed
+    );
+
     // run for the first time when the smart contract is deployed
     constructor() { 
         createTask("Focus on your goal!");
@@ -22,6 +28,7 @@ contract TodoList {
     function createTask(string memory _content) public {
         taskCount++;
         tasks[taskCount]=Task(taskCount, _content, false);
+        emit TaskCreated(taskCount, _content, false);
     }
 
     

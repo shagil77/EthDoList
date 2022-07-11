@@ -22,9 +22,17 @@ describe("TodoList", function (accounts) {
         const taskCount = await this.todoList.taskCount()
         const task = await this.todoList.tasks(taskCount)
         assert.equal(task.id.toNumber(), taskCount.toNumber())
-
         assert.equal(task.content, 'Focus on your goal!')
         assert.equal(task.completed, false)
         assert.equal(taskCount, 1)
+      })
+
+      it('create tasks', async () => {
+        const result = await this.todoList.createTask('A new task')
+        const taskCount = await this.todoList.taskCount()
+        assert.equal(taskCount, 2)
+        console.log(result)
+        // const event = result.logs[0].args
+
       })
   });

@@ -23374,6 +23374,7 @@ const { ethers } = require("ethers")
 App = {
     loading: false,
     contracts: {},
+    
   
     load: async () => {
       await App.loadWeb3()
@@ -23432,6 +23433,31 @@ App = {
           "inputs": [],
           "stateMutability": "nonpayable",
           "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "content",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "completed",
+              "type": "bool"
+            }
+          ],
+          "name": "TaskCreated",
+          "type": "event"
         },
         {
           "inputs": [
@@ -23498,7 +23524,8 @@ App = {
       // console.log(todoList)
   
       // Hydrate the smart contract with values from the blockchain
-      App.todoList = App.contracts.TodoList;
+      
+      App.todoList = await App.contracts.TodoList.deployed();
       console.log(App.todoList);
     },
 
@@ -23543,7 +23570,7 @@ App = {
     renderTasks: async () => {
       // Load the total task count from the blockchain
       const taskCount = await App.todoList.taskCount() // taskCount()
-      console.log(App.todoList.taskCount)
+      console.log(taskCount.toNumber())
       const $taskTemplate = $('.taskTemplate')
   
       // Render out each task with a new task template
@@ -23578,6 +23605,7 @@ App = {
       App.setLoading(true)
       const content = $('#newTask').val()
       await App.todoList.createTask(content)
+      
       window.location.reload()
     },
   
