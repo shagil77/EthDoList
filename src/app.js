@@ -56,7 +56,7 @@ App = {
       // node = http://127.0.0.1:8545/
       // function to call
       // Create a JavaScript version of the smart contract
-      const contractAddress = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
+      const contractAddress = "0x8f2BEA9e97F6e102B1F734a76921658b883cfb1C"; // Rinkeby Testnet
       const abi = [
         {
           "inputs": [],
